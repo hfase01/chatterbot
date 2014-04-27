@@ -24,17 +24,22 @@ exclude "http://"
 
 blacklist "mean_user, private_user"
 
-loop do
-
   puts "run search #{since_id}"
-  client.search("teamfollowback", :lang => "en").take(3).collect do |tweet|
+  client.search("teamfollowback", :lang => "en").take(2).collect do |tweet|
     tweet[:id]
   end
 
-  sleep 120
+sleep 10
 
   puts "run search #{since_id}"
-  client.search("followback", :lang => "en").take(3).collect do |tweet|
+  client.search("followback", :lang => "en").take(2).collect do |tweet|
+    tweet[:id]
+  end
+
+sleep 10
+
+  puts "run search #{since_id}"
+  client.search("f4f", :lang => "en").take(2).collect do |tweet|
     tweet[:id]
   end
   
@@ -46,6 +51,3 @@ loop do
 
   # explicitly update our config
   update_config
-
-  sleep 120
-end
