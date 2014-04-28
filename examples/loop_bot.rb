@@ -25,20 +25,13 @@ exclude "http://"
 blacklist "mean_user, private_user"
 
 loop do
-
-  puts "run search #{since_id}"
-  search "twitter" do |tweet|
-    # here you could do something with a tweet
-  end
+puts "run search #{since_id}"
+client.search("followback").take(4).collect do |tweet|
+    puts tweet[:text]
+end
   
-  puts "checking for replies to me"
-  replies do |tweet|
-    src = "#USER# it is very nice of you to say that!"  
-    reply src, tweet
-  end
-
   # explicitly update our config
   update_config
 
-  sleep 1
+  sleep 10
 end
